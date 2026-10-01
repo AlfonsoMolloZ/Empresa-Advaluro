@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.pruebas.tsbuildinfo",
+    "target": "es2023",
+    "lib": ["ES2023", "DOM"],
+    "types": ["node"],
+    "skipLibCheck": true,
+
+    // Estas pruebas mezclan los dos mundos: el servidor, que importa con
+    // extensión porque lo ejecuta Node, y `src/data`, que importa sin extensión
+    // porque lo empaqueta Vite. Con la resolución de `tsconfig.server.json`
+    // (nodenext) el código del panel daría error de compilación —no de
+    // ejecución— por imports que funcionan de sobra en la aplicación.
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["server/prueba-calculos.ts", "server/prueba-dataset.ts"]
+}
